@@ -1,0 +1,25 @@
+{
+  "name": "nodecourse",
+  "version": "1.0.0",
+  "description": "",
+  "main": "global.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/folusosamuel/NodeCourse.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/folusosamuel/NodeCourse/issues"
+  },
+  "homepage": "https://github.com/folusosamuel/NodeCourse#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "lodash": "^4.17.21",
+    "nodemon": "^2.0.15"
+  }
+}
