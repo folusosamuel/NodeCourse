@@ -1,12 +1,26 @@
 const express = require('express');
+const morgan = require('morgan');
+const mongoose = require('mongoose');
 const ejs = require('ejs');
-const ejsLint = require('ejs-lint');
 
 //express app
 const app = express();
 
+//connnect to mongodb
+//connnect to mongodb
+const dbURI =
+  'mongodb+srv://folusosamuel:analYsis@cluster0.xisnb.mongodb.net/node-tuts?retryWrites=true&w=majority';
+mongoose
+  .connect(dbURI, { useNewUrlParser: true, useUnifiedTopology: true })
+  .then((result) => console.log('connected to db'))
+  .catch((err) => console.log(err));
+
 //register view engine
 app.set('view engine', 'ejs'); //automatically express and ejs will look for views folder for ejs files
+
+//middleware and static files
+app.use(express.static('public'));
+app.use(morgan('dev'));
 
 app.get('/', (req, res) => {
   //res.send(`<p>Home Page</p>`);
