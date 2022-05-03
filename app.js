@@ -2,6 +2,8 @@ const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
 const ejs = require('ejs');
+const config = require('./config.js');
+const Blog = require('./models/blog');
 
 //express app
 const app = express();
@@ -21,6 +23,43 @@ app.set('view engine', 'ejs'); //automatically express and ejs will look for vie
 //middleware and static files
 app.use(express.static('public'));
 app.use(morgan('dev'));
+
+//mongoose and mongo  sandbox routes
+app.get('/add-blog', (req, res) => {
+  const blog = new Blog({
+    title: 'New Blog 2',
+    snippet: 'About my new blog',
+    body: 'more about my new blog',
+  });
+  blog
+    .save()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get('/all-blogs', (req, res) => {
+  Blog.find()
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
+
+app.get('/single-blog', (req, res) => {
+  Blog.findById('627102e7bc56ab1f36d09f70')
+    .then((result) => {
+      res.send(result);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+});
 
 app.get('/', (req, res) => {
   //res.send(`<p>Home Page</p>`);
